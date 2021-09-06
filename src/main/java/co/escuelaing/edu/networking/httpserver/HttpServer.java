@@ -10,18 +10,29 @@ import java.util.List;
 import java.io.*;
 
 /**
- * Hecho en clase con el profesor
+ * Server http
  */
 public class HttpServer {
 
     private static HttpServer _instance = new HttpServer();
 
+    /**
+     * Constructor
+     */
     private HttpServer(){}
 
+    /**
+     * get instance for http server
+     * @return HttpServer instance
+     */
     private static HttpServer getInstance(){
         return _instance;
     }
 
+    /**
+     * Gets port of the app
+     * @return int port
+     */
     static int getPort() {
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));
@@ -29,6 +40,11 @@ public class HttpServer {
         return 35000; //returns default port if heroku-port isn't set
     }
 
+    /**
+     * Returns the response for the path
+     * @param path path
+     * @return String response
+     */
     public String createTextResponse(String path){
         String type = "text/html";
         if(path.endsWith(".css")){
@@ -62,6 +78,11 @@ public class HttpServer {
         + "\r\n"+outmsg;
     }
 
+    /**
+     * Procces the response with the socker
+     * @param clientSocket socket
+     * @throws IOException exception
+     */
     public void processResponse(Socket clientSocket) throws IOException{
         PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(
@@ -97,6 +118,11 @@ public class HttpServer {
         
     }
 
+    /**
+     * Init the server
+     * @param args args
+     * @throws IOException exception
+     */
     public void startServer(String[] args) throws IOException {
         int port = getPort();
         ServerSocket serverSocket = null;
@@ -124,6 +150,11 @@ public class HttpServer {
         serverSocket.close();
     }
 
+    /**
+     * main method
+     * @param args args
+     * @throws IOException exception
+     */
     public static void main(String[] args) throws IOException {
         HttpServer.getInstance().startServer(args);
     }

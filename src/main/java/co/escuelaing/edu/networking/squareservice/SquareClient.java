@@ -3,7 +3,15 @@ package co.escuelaing.edu.networking.squareservice;
 import java.io.*;
 import java.net.*;
 
+/**
+ * Client for SquareService
+ */
 public class SquareClient {
+    /**
+     * main method
+     * @param args args
+     * @throws IOException exception
+     */
     public static void main(String[] args) throws IOException {
         Socket echoSocket = null;
         PrintWriter out = null;
