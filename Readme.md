@@ -25,6 +25,8 @@
 >## Reto 1
 >> Para el reto se uso una clase HttpServer que recibe el path de la URL y busca dentro de los archivos estaticos en caso de no encontrar el recurso solicitado se retorna un pagina determinada de 404
 >>
+>> link: https://taller2arep.herokuapp.com/
+>>
 >>`mvn exec:java -Dexec.mainClass="co.escuelaing.edu.networking.httpserver.HttpServer"`
 
 
