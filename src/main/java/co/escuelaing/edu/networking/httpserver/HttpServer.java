@@ -51,6 +51,9 @@ public class HttpServer {
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);
             //x.printStackTrace();
+            if(path.equals("/")){
+                return createTextResponse("/index.html");
+            }
             return createTextResponse("/404.html");
         }
         //System.out.println(type);
