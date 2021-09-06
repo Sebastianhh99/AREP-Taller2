@@ -22,6 +22,13 @@ public class HttpServer {
         return _instance;
     }
 
+    static int getPort() {
+        if (System.getenv("PORT") != null) {
+            return Integer.parseInt(System.getenv("PORT"));
+        }
+        return 35000; //returns default port if heroku-port isn't set
+    }
+
     public String createTextResponse(String path){
         String type = "text/html";
         if(path.endsWith(".css")){
@@ -88,7 +95,7 @@ public class HttpServer {
     }
 
     public void startServer(String[] args) throws IOException {
-        int port = 35000;
+        int port = getPort();
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(port);
